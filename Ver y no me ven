@@ -1,0 +1,50 @@
+class API {
+    private List<Contacto> contactos = new ArrayList<>();
+
+    public void agregarContacto(String nombre, String ultimaConexion, boolean enLinea) {
+        Contacto contacto = new Contacto(nombre, ultimaConexion, enLinea);
+        contactos.add(contacto);
+    }
+
+    public String verUltimaConexion(String nombre) {
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equals(nombre)) {
+                return contacto.getUltimaConexion();
+            }
+        }
+        return "No se encontró el contacto";
+    }
+
+    public boolean verEstadoEnLinea(String nombre) {
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equals(nombre)) {
+                return contacto.isEnLinea();
+            }
+        }
+        return false;
+    }
+}
+
+class Contacto {
+    private String nombre;
+    private String ultimaConexion;
+    private boolean enLinea;
+
+    public Contacto(String nombre, String ultimaConexion, boolean enLinea) {
+        this.nombre = nombre;
+        this.ultimaConexion = ultimaConexion;
+        this.enLinea = enLinea;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getUltimaConexion() {
+        return ultimaConexion;
+    }
+
+    public boolean isEnLinea() {
+        return enLinea;
+    }
+}
